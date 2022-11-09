@@ -23,12 +23,34 @@ class _MyFormPageState extends State<MyFormPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("INI JUDUL"),
+        title: Text("Data Diri"),
       ),
       // Menambahkan drawer menu
       drawer: Drawer(
         child: Column(
-          children: [],
+          children: [
+            // Menambahkan clickable menu
+            ListTile(
+              title: const Text('Counter'),
+              onTap: () {
+                // Route menu ke halaman utama
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MyHomePage()),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text('Form'),
+              onTap: () {
+                // Route menu ke halaman form
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MyFormPage()),
+                );
+              },
+            ),
+          ],
         ),
       ),
       body: Form(
@@ -219,10 +241,14 @@ class _MyFormPageState extends State<MyFormPage> {
                                   SizedBox(height: 20),
                                   Text('Nama Lengkap: ' +
                                       _namaLengkap +
-                                      'Umur: ' +
+                                      '\nJenjang Pendidikan: ' +
+                                      "TODO: JENJANG" +
+                                      '\nUmur: ' +
                                       umur.toString() +
-                                      'Kelas: ' +
-                                      kelasPBP),
+                                      '\nKelas: ' +
+                                      kelasPBP +
+                                      '\nPractice Mode: ' +
+                                      _nilaiSwitch.toString()),
                                   TextButton(
                                     onPressed: () {
                                       Navigator.pop(context);
