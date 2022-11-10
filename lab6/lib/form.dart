@@ -11,6 +11,7 @@ class MyFormPage extends StatefulWidget {
 class _MyFormPageState extends State<MyFormPage> {
   final _formKey = GlobalKey<FormState>();
   String _namaLengkap = "";
+  String _namaJenjang = "";
   bool jenjangSarjana = false;
   bool jenjangDiploma = false;
   bool jenjangMagister = false;
@@ -223,6 +224,7 @@ class _MyFormPageState extends State<MyFormPage> {
                   ),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
+                      _setNamaJenjang();
                       showDialog(
                         context: context,
                         builder: (context) {
@@ -242,7 +244,7 @@ class _MyFormPageState extends State<MyFormPage> {
                                   Text('Nama Lengkap: ' +
                                       _namaLengkap +
                                       '\nJenjang Pendidikan: ' +
-                                      "TODO: JENJANG" +
+                                      _namaJenjang +
                                       '\nUmur: ' +
                                       umur.toString() +
                                       '\nKelas: ' +
@@ -270,5 +272,22 @@ class _MyFormPageState extends State<MyFormPage> {
         ),
       ),
     );
+  }
+
+  void _setNamaJenjang() {
+    setState(() {
+      // This call to setState tells the Flutter framework that something has
+      // changed in this State, which causes it to rerun the build method below
+      // so that the display can reflect the updated values. If we changed
+      // _counter without calling setState(), then the build method would not be
+      // called again, and so nothing would appear to happen.
+      _namaJenjang = jenjangSarjana
+          ? "Sarjana"
+          : jenjangDiploma
+              ? "Diploma"
+              : jenjangMagister
+                  ? "Magister"
+                  : "Doktor";
+    });
   }
 }
